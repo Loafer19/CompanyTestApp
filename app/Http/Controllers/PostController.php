@@ -18,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest()->get();
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -41,13 +43,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $path = $request->file('image')->store('posts/images');
-        $request->merge(['image' => $path]);
+        $path = $request->file('file')->store('public/posts/images');
+        $request->merge(['image' => str_replace('public', 'storage', $path)]);
 
-        $post = Post::create($request->validated());
+        $post = Post::create($request->all());
         $post->categories()->attach($request->categories);
 
-        return response('Post created');
+        return redirect()->route('posts.index');
     }
 
     /**

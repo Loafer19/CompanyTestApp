@@ -49,9 +49,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput2">Image</label>
-                            <input type="file" name="image" class="form-control @error('image') is-invalid @enderror p-1" accept="image/*" id="exampleFormControlInput2" value="{{ old('image') }}">
+                            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror p-1" accept="image/*" id="exampleFormControlInput2" value="{{ old('image') }}">
 
-                            @error('image')
+                            @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
